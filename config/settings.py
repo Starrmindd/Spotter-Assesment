@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-dev-key-change-in-producti
 
 DEBUG = os.getenv('DEBUG', 'True') == 'True'  # Default to True for easier debugging
 
-# Allow Railway domain and localhost
+# Allow Railway, Render domains and localhost
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # Add Railway domain if present
@@ -25,6 +25,9 @@ if railway_domain:
 
 # Also allow any Railway subdomain
 ALLOWED_HOSTS.append('.railway.app')
+
+# Allow Render domains
+ALLOWED_HOSTS.append('.onrender.com')
 
 # Allow all hosts if DEBUG is True (for easier deployment testing)
 if DEBUG:
