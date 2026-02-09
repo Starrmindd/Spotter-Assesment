@@ -13,9 +13,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-dev-key-change-in-production')
 
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
+# Allow Railway domain and localhost
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+
+# Add Railway domain if present
+railway_domain = os.getenv('RAILWAY_PUBLIC_DOMAIN')
+if railway_domain:
+    ALLOWED_HOSTS.append(railway_domain)
+
+# Also allow any Railway subdomain
+ALLOWED_HOSTS.append('.railway.app')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
