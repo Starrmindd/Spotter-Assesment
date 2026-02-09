@@ -14,7 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f8fafc;
+  background: #0f172a;
 }
 
 code {
@@ -22,11 +22,40 @@ code {
     monospace;
 }
 
-/* Mapbox GL styles */
-.mapboxgl-canvas {
-  outline: none;
+/* Leaflet map fixes */
+.leaflet-container {
+  height: 500px;
+  width: 100%;
+  z-index: 1;
 }
 
-.mapboxgl-ctrl-attrib {
-  font-size: 10px;
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+}
+
+.leaflet-popup-content {
+  margin: 8px 12px;
+  font-size: 14px;
+}
+
+/* Custom marker styles */
+.custom-marker {
+  background: transparent;
+  border: none;
+}
+
+/* Autocomplete dropdown z-index fix */
+.autocomplete-dropdown {
+  z-index: 1000;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }

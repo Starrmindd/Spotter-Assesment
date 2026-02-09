@@ -181,8 +181,6 @@ function App() {
               </div>
             </div>
 
-            {/* Trip Details - Removed as component doesn't exist */}
-
             {/* Map */}
             <div className="bg-slate-800 rounded-xl shadow-2xl border border-slate-700 overflow-hidden">
               <div className="bg-gradient-to-r from-slate-800 to-slate-700 px-6 py-4 border-b border-slate-600">
@@ -225,7 +223,7 @@ function App() {
               ELD Trip Planner © 2026 - DOT HOS Compliance for Property-Carrying Drivers
             </p>
             <div className="flex items-center space-x-4 mt-4 md:mt-0">
-              <span className="text-xs text-slate-500">Powered by Django + React</span>
+              <span className="text-xs text-slate-500">Built by STARMIND </span>
             </div>
           </div>
         </div>
