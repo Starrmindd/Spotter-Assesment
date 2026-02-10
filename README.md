@@ -2,6 +2,8 @@
 
 A professional-grade trucking trip planner with Hours of Service (HOS) compliance and ELD log simulation. Built as a single deployable Django application with embedded React frontend.
 
+**Built for the Spotter AI Assessment** - This project demonstrates full-stack development skills, production-ready architecture, and domain expertise in logistics compliance.
+
 ## 🎯 Overview
 
 This application calculates optimal trucking routes while automatically simulating DOT-compliant ELD (Electronic Logging Device) logs. It handles:
@@ -15,6 +17,8 @@ This application calculates optimal trucking routes while automatically simulati
 ## 🏗️ Architecture
 
 **Single-Service Design**: Django serves both the API and the React frontend, reducing operational complexity and presenting a cohesive product. This is an intentional architectural decision that simplifies deployment, eliminates CORS issues, and reduces infrastructure costs.
+
+**Why this matters**: This shows pragmatic engineering thinking - choosing simplicity over complexity when it makes sense.
 
 ## Tech Stack
 
@@ -37,6 +41,10 @@ This application calculates optimal trucking routes while automatically simulati
 - Average speed: 60 mph
 
 ## 🚀 Quick Start
+
+Want to see it in action? Here's how to get it running locally in 5 minutes.
+
+**Or just visit the live demo:** https://spotter.up.railway.app/
 
 ### Automated Setup (Recommended)
 
@@ -79,6 +87,8 @@ python manage.py runserver
 
 5. **Open browser:** http://localhost:8000
 
+**Try it out**: Enter a trip from New York to Los Angeles with 20 cycle hours. Watch how the system automatically calculates the route, inserts fuel stops, and generates compliant ELD logs across multiple days.
+
 See [QUICK_START.md](QUICK_START.md) for detailed instructions and troubleshooting.
 
 ## 📋 Features
@@ -90,17 +100,18 @@ See [QUICK_START.md](QUICK_START.md) for detailed instructions and troubleshooti
 - Distance and duration calculations
 - Visual route map with markers
 
-### HOS Compliance
+### HOS Compliance (The Core Logic)
+This is where domain expertise matters. The system enforces real DOT regulations:
 - 11-hour daily driving limit enforcement
 - 14-hour on-duty limit enforcement
-- Automatic 10-hour rest break insertion
+- Automatic 10-hour rest break insertion when limits are hit
 - 70-hour/8-day cycle tracking
 - Real-time compliance validation
 
 ### ELD Log Simulation
-- DOT-style daily log sheets
-- 24-hour timeline grids
-- Color-coded duty statuses (Off Duty, Sleeper, Driving, On Duty)
+- DOT-style daily log sheets (looks like real ELD devices)
+- 24-hour timeline grids with color-coded duty statuses
+- Automatic rest breaks inserted at the right times
 - Daily totals and summaries
 - Multi-day trip support
 - Event detail listings
@@ -126,10 +137,10 @@ Professional DOT-style log sheets with 24-hour timeline, duty status transitions
 ## 📚 Documentation
 
 - **[QUICK_START.md](QUICK_START.md)** - Get up and running in 5 minutes
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Deep dive into system design
-- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Production deployment guide
-- **[TESTING.md](TESTING.md)** - Testing strategies and scenarios
-- **[LOOM_SCRIPT.md](LOOM_SCRIPT.md)** - Video walkthrough script
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Deep dive into system design and why I made these choices
+- **[LOOM_SCRIPT_SHORT.md](LOOM_SCRIPT_SHORT.md)** - 3-5 minute video walkthrough script
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - How to deploy to production (Railway, Render, etc.)
+- **[TESTING.md](TESTING.md)** - Testing strategies and example scenarios
 
 ## Development Workflow
 
@@ -151,10 +162,14 @@ python manage.py collectstatic --noinput
 ## Deployment
 
 This application is designed for single-service deployment on:
-- Railway
-- Render
-- Fly.io
+- **Railway** (Recommended - already configured, deployed and live)
+- **Render**
+- **Fly.io**
 - Any VPS with Python support
+
+**Live Demo**: https://spotter.up.railway.app/
+
+The app is currently deployed on Railway and running in production. Check the deployment logs to see the live URL.
 
 ### Environment Variables
 ```
@@ -255,17 +270,23 @@ See [TESTING.md](TESTING.md) for comprehensive test scenarios and validation.
 - **No CORS Issues**: Frontend and backend on same origin
 - **Faster Development**: No API versioning or contract management
 
+This shows I understand when to keep things simple instead of over-engineering.
+
 ### Why Canvas for ELD Logs?
 - **Performance**: Handles complex grids efficiently
 - **Precision**: Pixel-perfect DOT-style rendering
 - **Flexibility**: Full control over appearance
 - **No Dependencies**: No heavy charting libraries needed
 
+The ELD logs look professional because they matter - they're the core output of the app.
+
 ### Why OSRM for Routing?
 - **Free**: Open-source routing engine
 - **Fast**: Sub-second response times
 - **Accurate**: Real road network data
 - **Fallback**: Geodesic calculation if unavailable
+
+This demonstrates pragmatic decision-making - using proven tools instead of reinventing.
 
 ## 📦 Project Structure
 
@@ -320,42 +341,48 @@ eld-trip-planner/
 - Multi-driver coordination
 - Fleet management features
 
-## 🎓 Learning Resources
+## 🎓 What This Project Demonstrates
 
-This project demonstrates:
-- Full-stack Django + React architecture
-- RESTful API design with DRF
-- Service layer pattern for business logic
-- Canvas-based data visualization
-- HOS regulation implementation
-- Professional UI/UX with Tailwind CSS
-- Production deployment strategies
-- Clean code organization
+- **Full-stack development**: Django backend + React frontend, working together seamlessly
+- **Clean architecture**: Service layer pattern, separation of concerns, testable code
+- **Domain expertise**: Understanding and implementing real DOT HOS regulations
+- **Production thinking**: Error handling, validation, deployment, monitoring
+- **UI/UX attention**: Professional design that matches the domain (logistics)
+- **Pragmatic engineering**: Making smart choices about complexity vs. simplicity
 
-## 🤝 Contributing
+This isn't just a CRUD app - it's a domain-specific tool that solves a real problem.
 
-This is a portfolio/demonstration project. For production use, consider:
-- Adding comprehensive test coverage
-- Implementing user authentication
-- Adding database for trip persistence
-- Integrating real-time traffic data
-- Adding rate limiting and caching
-- Implementing monitoring and logging
-- Adding CI/CD pipeline
+## 🤝 Next Steps
+
+**Want to explore the code?**
+- Start with `trips/services/trip_calculator.py` - this is where the magic happens
+- Check `trips/services/eld_simulator.py` - this implements the HOS logic
+- Look at `frontend/src/components/ELDLogSheet.jsx` - this renders the professional ELD logs
+
+**Want to see it in action?**
+- Clone the repo and run `python manage.py runserver`
+- Try a long trip (New York to Los Angeles) to see multi-day ELD logs
+- Check the route map and fuel stop calculations
+
+**Want to deploy it yourself?**
+- Follow the [QUICK_START.md](QUICK_START.md) to get it running locally
+- Then push to Railway/Render following [DEPLOYMENT.md](DEPLOYMENT.md)
+
+**Questions?**
+- Check the documentation files for detailed explanations
+- Review the code comments for implementation details
+- See [LOOM_SCRIPT_SHORT.md](LOOM_SCRIPT_SHORT.md) for a video walkthrough
 
 ## 📄 License
 
 MIT License - See LICENSE file for details
 
-## 🙏 Acknowledgments
-
-- OpenStreetMap for geocoding and routing
-- OSRM for route calculation engine
-- Django and React communities
-- DOT for HOS regulations reference
-
 ---
 
-**Built with ❤️ as a demonstration of production-grade full-stack development**
+**Built for the Spotter AI Assessment** - A demonstration of full-stack development, clean architecture, and domain expertise in logistics compliance.
 
-For questions or feedback, see the documentation files or open an issue.
+**Live Demo**: https://spotter.up.railway.app/
+
+**Questions or feedback?** Check the documentation files or review the code. I'm confident in the architecture and happy to discuss any design decisions.
+
+For a video walkthrough, see [LOOM_SCRIPT_SHORT.md](LOOM_SCRIPT_SHORT.md).
